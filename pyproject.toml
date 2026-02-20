@@ -9,5 +9,8 @@ dependencies = [
     "mlflow>=3.9.0",
     "pydantic>=2.12.5",
     "pydantic-settings>=2.13.0",
+    "torch>=2.10.0",
+    "torchaudio>=2.10.0",
+    "torchvision>=0.25.0",
     "uvicorn>=0.41.0",
 ]
