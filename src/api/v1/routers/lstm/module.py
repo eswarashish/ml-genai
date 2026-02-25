@@ -7,10 +7,11 @@ from fastapi import Request, Response, Depends
 router = FastAPI(lifespan=lifespan)
 
 @router.get("/health")
-async def health(request: Request):
+async def health(state: LSTMState = Depends(getState)):
+    
+    
     return Response(status_code=200,content="Active and Healthy")
 
 @router.post("/lstm")
-async def lstm(state: LSTMState = Depends(getState) ):
-    
-    print(state)
+async def lstm(state: LSTMState = Depends(getState)):
+    pass

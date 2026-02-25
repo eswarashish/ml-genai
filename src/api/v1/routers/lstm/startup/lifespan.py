@@ -8,14 +8,12 @@ from fastapi import FastAPI, Request
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI)->AsyncIterator[None]:
+async def lifespan(app: FastAPI)->AsyncIterator[LSTMState]:
     try:
-        device = TorchDevice(dev=None)
+        device = TorchDevice()
         lstm = ETDLSTM(5,4,3,2,0.4,device.dev,float)
         print('loaded')
-        app.state.lstm_state = LSTMState(device=device,lstm=lstm)
-        yield 
-        app.state.lstm_state = None
+        yield {"lstm_state": LSTMState(device=device, lstm=lstm)}
     except Exception as e:
         raise RuntimeError(f'Application startup failed: {e}') from e
     
