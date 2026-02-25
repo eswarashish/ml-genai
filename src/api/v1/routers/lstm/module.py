@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from src.api.v1.routers.lstm.startup.lifespan import lifespan, getState
 from src.api.v1.routers.lstm.startup.state import LSTMState
-from fastapi import Request,Response, Depends
+from fastapi import Request, Response, Depends
 
 
 router = FastAPI(lifespan=lifespan)
