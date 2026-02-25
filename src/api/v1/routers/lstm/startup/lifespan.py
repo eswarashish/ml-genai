@@ -15,6 +15,7 @@ async def lifespan(app: FastAPI)->AsyncIterator[None]:
         print('loaded')
         app.state.lstm_state = LSTMState(device=device,lstm=lstm)
         yield 
+        app.state.lstm_state = None
     except Exception as e:
         raise RuntimeError(f'Application startup failed: {e}') from e
     
