@@ -14,8 +14,9 @@ class ETDLSTM(nn.Module):
         self.num = num_layers
         self.device = device
         self.lstm = nn.LSTM(input_size=input_size,hidden_size=hidden_size,num_layers=num_layers,dropout=dropout,batch_first=True,device=device,dtype=dtype)
-        self.fc = nn.Linear(hidden_size,output_size,device=device,dtype=dtype)
-        self.F = F.selu
+        self.sequential = nn.Sequential(nn.Linear(hidden_size,output_size,device=device,dtype=dtype),
+                                        F.selu(),
+                                        nn.Linear(output_size,output_size,device=device,dtype=dtype))
 
 
     def forward(self,x:Tensor):
@@ -25,5 +26,6 @@ class ETDLSTM(nn.Module):
         
         out, (_,_) = self.lstm(x,(h0 ,c0))
 
-        return self.F(self.fc(out))
+        return self.sequential(out)
+    
     
