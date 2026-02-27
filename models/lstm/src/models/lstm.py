@@ -1,5 +1,4 @@
 import torch
-import torch.nn.functional as F
 import torch.nn as nn
 from torch import device
 from torch import dtype
@@ -15,7 +14,7 @@ class ETDLSTM(nn.Module):
         self.device = device
         self.lstm = nn.LSTM(input_size=input_size,hidden_size=hidden_size,num_layers=num_layers,dropout=dropout,batch_first=True,device=device,dtype=dtype)
         self.sequential = nn.Sequential(nn.Linear(hidden_size,output_size,device=device,dtype=dtype),
-                                        F.selu(),
+                                        nn.SELU(),
                                         nn.Linear(output_size,output_size,device=device,dtype=dtype))
 
 
