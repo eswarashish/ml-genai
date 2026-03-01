@@ -1,6 +1,5 @@
 import torch
 from torch import device
-from typing import Optional
 
 
 class TorchDevice:
