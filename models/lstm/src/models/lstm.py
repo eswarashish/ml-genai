@@ -14,7 +14,9 @@ class ETDLSTM(nn.Module):
         self.device = device
         self.lstm = nn.LSTM(input_size=input_size,hidden_size=hidden_size,num_layers=num_layers,dropout=dropout,batch_first=True,device=device,dtype=dtype)
         self.sequential = nn.Sequential(nn.Linear(hidden_size,output_size,device=device,dtype=dtype),
+                                        nn.Dropout(dropout),
                                         nn.SELU(),
+                                        nn.Dropout(dropout),
                                         nn.Linear(output_size,output_size,device=device,dtype=dtype))
 
 
