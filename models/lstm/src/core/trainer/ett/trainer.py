@@ -37,5 +37,7 @@ class ETTTrainer:
                     loss = self.criterion(output,target)
                     total_val_loss += loss.item()
 
+            self.lr_scheduler.step(total_val_loss)
+
             
 
