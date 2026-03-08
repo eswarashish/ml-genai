@@ -1,4 +1,4 @@
-from src.models.lstm import ETDLSTM
+from src.models.custom import ETDLSTM
 from src.core.support.torch import TorchDevice
 from typing import TypedDict
 
