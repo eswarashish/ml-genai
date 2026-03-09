@@ -12,12 +12,12 @@ async def lifespan(app: FastAPI)->AsyncIterator[None]:
     try:
         device = TorchDevice()
         lstm = ETDLSTM(5,4,3,2,0.4,device.dev,float)
-        app.state.lstm_state = LSTMState(device=device, lstm=lstm)
+        app.state.custom_state = LSTMState(device=device, lstm=lstm)
         yield 
-        app.state.lstm_state = None
+        app.state.custom_state = None
     except Exception as e:
         raise RuntimeError(f'Application startup failed: {e}') from e
     
 
 def getState(request:Request)->LSTMState:
-    return request.app.state.lstm_state
+    return request.app.state.custom_state

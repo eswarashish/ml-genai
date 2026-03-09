@@ -20,3 +20,7 @@ async def health(state: LSTMState = Depends(getState)):
 @router.post("/device")
 async def lstm(state: LSTMState = Depends(getState))->str:
     return state["device"].dev.type
+
+@router.post("/train")
+async def train(state: LSTMState  = Depends(getState)):
+    pass
