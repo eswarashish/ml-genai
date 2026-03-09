@@ -1,16 +1,7 @@
 from torch.utils.data import DataLoader, random_split
-from torch import device
+from src.core.trainer.state import DataloaderRequest
 from src.core.trainer.ett.dataset import get_ettdata
-from pathlib import Path
-from pydantic import BaseModel
 from typing import Tuple
-
-class DataloaderRequest(BaseModel):
-    device: device
-    path:Path
-    batch_size:int 
-    shuffle: bool
-    num_workers:int
 
 
 def dataloader(request: DataloaderRequest, train_split: float)->Tuple[DataLoader,DataLoader]:
