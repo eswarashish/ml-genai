@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from src.api.v1.routers.lstm.startup.lifespan import lifespan, getState
-from src.api.v1.routers.lstm.startup.state import LSTMState
+from src.api.v1.routers.vanilla.startup.lifespan import lifespan, getState
+from src.api.v1.routers.vanilla.startup.state import LSTMState
 from src.utils.logger import getLogger
 from fastapi import Response, Depends,status
 

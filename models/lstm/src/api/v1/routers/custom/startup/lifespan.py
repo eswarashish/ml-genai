@@ -1,6 +1,6 @@
 from src.core.support.torch import TorchDevice
 from src.models.custom import ETDLSTM
-from src.api.v1.routers.lstm.startup.state import LSTMState
+from src.api.v1.routers.custom.startup.state import LSTMState
 from torch import float
 from contextlib import asynccontextmanager
 from typing import AsyncIterator
