@@ -1,15 +1,17 @@
-from src.core.trainer.ett.dataloader import dataloader,DataloaderRequest
+from src.core.trainer.ett.dataloader import dataloader
+from src.core.trainer.state import DataloaderRequest
 from src.utils.logger import getLogger
 from torch import nn
 from torch.optim import Optimizer
 from torch.optim.lr_scheduler import LRScheduler
+from torch.utils.data import DataLoader
 import torch
 
 logger = getLogger("Trainer")
 
-class ETTTrainer:
-    def __init__(self,request: DataloaderRequest,train_split: float,epochs: int,optimizer: Optimizer,loss:nn.Module, scheduler:  LRScheduler ) -> None:
-        self.train_dataloader, self.validate_dataloader = dataloader(request,train_split)
+class Trainer:
+    def __init__(self, epochs: int,optimizer: Optimizer,loss:nn.Module, scheduler:  LRScheduler, train_dataloader: DataLoader, validate_dataloader: DataLoader  ) -> None:
+        self.train_dataloader, self.validate_dataloader = train_dataloader, validate_dataloader
         self.epochs = epochs
         self.optim = optimizer
         self.criterion = loss
