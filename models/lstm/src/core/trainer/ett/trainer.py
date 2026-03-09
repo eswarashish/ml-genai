@@ -2,7 +2,7 @@ from src.core.trainer.ett.dataloader import dataloader,DataloaderRequest
 from src.utils.logger import getLogger
 from torch import nn
 from torch.optim import Optimizer
-from torch.optim.lr_scheduler import LRScheduler, ReduceLROnPlateau
+from torch.optim.lr_scheduler import LRScheduler
 import torch
 
 logger = getLogger("Trainer")
