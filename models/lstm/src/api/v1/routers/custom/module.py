@@ -4,8 +4,8 @@ from src.api.v1.routers.custom.startup.state import LSTMState
 from src.utils.logger import getLogger
 from fastapi import Response, Depends,status
 
-router = FastAPI(lifespan=lifespan,title="lstm-router")
-logger = getLogger("lstm-router")
+router = FastAPI(lifespan=lifespan,title="custom-lstm-router")
+logger = getLogger("custom-lstm-router")
 @router.get("/lstm-health")
 async def health(state: LSTMState = Depends(getState)):
     try:

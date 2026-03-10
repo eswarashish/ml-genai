@@ -11,7 +11,7 @@ from fastapi import FastAPI, Request
 async def lifespan(app: FastAPI)->AsyncIterator[None]:
     try:
         device = TorchDevice()
-        lstm = ETDLSTM(5,4,3,2,0.4,device.dev,float)
+        lstm = ETDLSTM(5,4,3,4,0.4,device.dev,float)
         app.state.custom_state = LSTMState(device=device, lstm=lstm)
         yield 
         app.state.custom_state = None

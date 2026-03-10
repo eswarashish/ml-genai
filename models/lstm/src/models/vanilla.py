@@ -10,7 +10,7 @@ class VanillaLSTM(nn.Module):
            self.num_layers = num_layers
            self.output_size = output_size
            self.device = device
-           self.lstm = nn.LSTM(input_size=self.input_size,hidden_size=self.output_size,device=self.device,batch_first=True,dropout=droupout,dtype=dtype)
+           self.lstm = nn.LSTM(input_size=self.input_size,num_layers=self.num_layers,hidden_size=self.output_size,device=self.device,batch_first=True,dropout=droupout,dtype=dtype)
 
     def forward(self,x:Tensor):
           h0 = torch.zeros([self.num_layers,x.size(0),self.output_size]) 
