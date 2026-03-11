@@ -3,6 +3,7 @@ from src.models.custom import ETDLSTM
 from src.core.trainer.ett.dataset import get_ettdata
 from src.utils.logger import getLogger
 from src.api.v1.routers.custom.startup.state import LSTMState
+from src.core.config.settings import settings
 from pathlib import Path
 from torch import float
 from contextlib import asynccontextmanager
@@ -14,9 +15,8 @@ logger = getLogger('custom_lifespan')
 async def lifespan(app: FastAPI)->AsyncIterator[None]:
     try:
         device = TorchDevice()
-        sample_in,sample_out = get_ettdata(path=Path("/Users/eswarashish/Desktop/private/ml-genai/ETTh1.csv"),device=device.dev)[0]
-        logger.info(f'{sample_in.shape}')
-        lstm = ETDLSTM(5,4,3,4,0.4,device.dev,float)
+        sample_in,sample_out = get_ettdata(path=Path("/home/ashish/Desktop/projects/ml-genai/models/lstm/ETTh1.csv"),device=device.dev)[0]
+        lstm = ETDLSTM(sample_in.shape[0],settings.hidden_size,sample_out.shape[0],settings.num_layers,settings.dropout,device.dev,float)
         app.state.custom_state = LSTMState(device=device, lstm=lstm)
         yield 
         app.state.custom_state = None
