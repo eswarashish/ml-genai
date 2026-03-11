@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from src.api.v1.routers.custom.startup.lifespan import lifespan, getState
 from src.api.v1.routers.custom.startup.state import LSTMState
+from src.core.modules.trainer import train as train_model
 from src.utils.logger import getLogger
 from fastapi import Response, Depends,status
 
@@ -23,4 +24,5 @@ async def lstm(state: LSTMState = Depends(getState))->str:
 
 @router.post("/train")
 async def train(state: LSTMState  = Depends(getState)):
+    # await train_model(model=state["lstm"],request=TrainerRequest(epochs=train.epochs,optimizer=train.optimizer,loss=train.loss,scheduler=train.scheduler,train_dataloader=train.train_dataloader,validate_dataloader=train.validate_dataloader))
     pass
