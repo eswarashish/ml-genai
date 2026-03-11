@@ -1,21 +1,17 @@
-from src.core.trainer.ett.dataloader import dataloader
-from src.core.trainer.state import DataloaderRequest
 from src.utils.logger import getLogger
+from src.core.trainer.state import TrainerRequest
 from torch import nn
-from torch.optim import Optimizer
-from torch.optim.lr_scheduler import LRScheduler
-from torch.utils.data import DataLoader
 import torch
 
 logger = getLogger("Trainer")
 
 class Trainer:
-    def __init__(self, epochs: int,optimizer: Optimizer,loss:nn.Module, scheduler:  LRScheduler, train_dataloader: DataLoader, validate_dataloader: DataLoader  ) -> None:
-        self.train_dataloader, self.validate_dataloader = train_dataloader, validate_dataloader
-        self.epochs = epochs
-        self.optim = optimizer
-        self.criterion = loss
-        self.lr_scheduler = scheduler
+    def __init__(self, request: TrainerRequest) -> None:
+        self.train_dataloader, self.validate_dataloader = request.train_dataloader, request.validate_dataloader
+        self.epochs = request.epochs
+        self.optim = request.optimizer
+        self.criterion = request.loss
+        self.lr_scheduler = request.scheduler
     def train(self,model:nn.Module):
         for epoch in range(self.epochs):
             logger.info(f"Epoch :{epoch+1}/{(self.epochs)} started")

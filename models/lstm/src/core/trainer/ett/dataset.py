@@ -24,6 +24,6 @@ class ETTDataset(Dataset):
     
         
 def get_ettdata(path: Path,device:device)->ETTDataset:
-    xy =  np.loadtxt(path,delimiter=",",dtype=np.float32,skiprows=1,usecols=[1,2,3,4,5,6,7])
-    return ETTDataset(data=xy[:,1:-2],target=xy[:,[-1]],n_samples=xy.shape[0],device=device)
+    xy =  np.loadtxt(path,delimiter=",",dtype=np.float32,skiprows=1, usecols=[1,2,3,4,5,6,7])
+    return ETTDataset(data=xy[:,0:-1],target=xy[:,[-1]],n_samples=xy.shape[0],device=device)
 
