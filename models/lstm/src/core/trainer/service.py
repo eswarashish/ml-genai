@@ -4,7 +4,6 @@ from torch import nn
 import torch,mlflow
 
 logger = getLogger("Trainer")
-mlflow.enable_system_metrics_logging()
 
 class Trainer:
     def __init__(self, request: TrainerRequest) -> None:
@@ -15,7 +14,7 @@ class Trainer:
         self.lr_scheduler = request.scheduler
     def train(self,model:nn.Module):
        with mlflow.start_run():
-        mlflow.log_params()
+        # mlflow.log_params()
 
         for epoch in range(self.epochs):
             logger.info(f"Epoch :{epoch+1}/{(self.epochs)} started")
